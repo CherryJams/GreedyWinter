@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private GameObject arrowPrefab;
 
     private bool isGameActive = false;
 
     public void StartGame()
     {
-        isGameActive = true;
+        
     }
 
     public void WaitAndStartLevel()
@@ -29,7 +28,9 @@ public class GameManager : Singleton<GameManager>
     public void EndGame()
     {
         isGameActive = false;
+        FindObjectOfType<Score>().ResetScore();
         CanvasManager.GetInstance().SwitchCanvas(CanvasType.GameOverScreen);
+
     }
 
     public void RestartGame()

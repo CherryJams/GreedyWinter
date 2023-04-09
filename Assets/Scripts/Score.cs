@@ -25,6 +25,10 @@ public class Score : MonoBehaviour
     {
         return score;
     }
+    public void ResetScore()
+    {
+        score = 0;
+    }
 
     // Update is called once per frame
     void Update()
