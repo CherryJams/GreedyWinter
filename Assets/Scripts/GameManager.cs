@@ -8,10 +8,10 @@ public class GameManager : Singleton<GameManager>
 {
 
     private bool isGameActive = false;
+    private Spawner spawner;
 
     public void StartGame()
     {
-        
     }
 
     public void WaitAndStartLevel()
@@ -29,6 +29,7 @@ public class GameManager : Singleton<GameManager>
     {
         isGameActive = false;
         FindObjectOfType<Score>().ResetScore();
+        FindObjectOfType<Spawner>().DestroyObjects();
         CanvasManager.GetInstance().SwitchCanvas(CanvasType.GameOverScreen);
 
     }

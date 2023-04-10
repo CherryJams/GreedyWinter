@@ -7,22 +7,24 @@ public class Bar : MonoBehaviour
     private GameObject bar;
 
     [SerializeField] private float time;
+    private Spawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
         bar = this.gameObject;
+        spawner = FindObjectOfType<Spawner>();
     }
     
     public void AnimateBar()
     {
-        LeanTween.cancel(bar);
         ResetBar();
         LeanTween.scaleX(bar, 0, time).setOnComplete(EndGame);
     }
 
     public void ResetBar()
     {
+        LeanTween.cancel(bar);
         LeanTween.scaleX(bar, 1, 0);
     }
 

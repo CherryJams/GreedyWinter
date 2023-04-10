@@ -7,6 +7,8 @@ public class Score : MonoBehaviour
 {
     private TMP_Text scoreText;
     private int score;
+    private bool isPyromania;
+   
 
 
     // Start is called before the first frame update
