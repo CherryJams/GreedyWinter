@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-
     private bool isGameActive = false;
     private Spawner spawner;
 
@@ -27,11 +26,11 @@ public class GameManager : Singleton<GameManager>
 
     public void EndGame()
     {
-        isGameActive = false;
         FindObjectOfType<Score>().ResetScore();
-        FindObjectOfType<Spawner>().DestroyObjects();
+        var spawner = FindObjectOfType<Spawner>();
+        spawner.DestroyObjects();
+        spawner.SetSpawnCounter(0);
         CanvasManager.GetInstance().SwitchCanvas(CanvasType.GameOverScreen);
-
     }
 
     public void RestartGame()
@@ -56,5 +55,10 @@ public class GameManager : Singleton<GameManager>
     public bool IsGameActive()
     {
         return isGameActive;
+    }
+
+    public void SetGameActive(bool gameActive)
+    {
+        isGameActive = gameActive;
     }
 }

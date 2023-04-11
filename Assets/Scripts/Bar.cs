@@ -5,8 +5,8 @@ using UnityEngine;
 public class Bar : MonoBehaviour
 {
     private GameObject bar;
-
     [SerializeField] private float time;
+    [SerializeField] private float pyromaniaTime;
     private Spawner spawner;
 
     // Start is called before the first frame update
@@ -15,11 +15,14 @@ public class Bar : MonoBehaviour
         bar = this.gameObject;
         spawner = FindObjectOfType<Spawner>();
     }
-    
+
     public void AnimateBar()
     {
         ResetBar();
-        LeanTween.scaleX(bar, 0, time).setOnComplete(EndGame);
+        if (GameManager.GetInstance().IsGameActive())
+        {
+            LeanTween.scaleX(bar, 0, time).setOnComplete(EndGame);
+        }
     }
 
     public void ResetBar()
@@ -32,5 +35,10 @@ public class Bar : MonoBehaviour
     {
         ResetBar();
         GameManager.GetInstance().EndGame();
+    }
+
+    public void SetPyromaniaTime()
+    {
+        time = pyromaniaTime;
     }
 }
