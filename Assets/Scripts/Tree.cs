@@ -1,24 +1,28 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Tree : MonoBehaviour, IClickable
+public class Tree : MonoBehaviour
 {
     [SerializeField] private int scorePoints;
     private Bar bar;
     private CollectionMovement collectionMovement;
     private Score score;
     private Spawner spawner;
+    private Button button;
 
     private void OnEnable()
     {
+        button = gameObject.GetComponent<Button>();
+        button.onClick.AddListener(AdvanceGame);
         collectionMovement = FindObjectOfType<CollectionMovement>();
         spawner = FindObjectOfType<Spawner>();
         score = FindObjectOfType<Score>();
         bar = FindObjectOfType<Bar>();
     }
 
-    public void OnMouseDown()
+    public void AdvanceGame()
     {
         if (GameManager.GetInstance().IsGameActive())
         {

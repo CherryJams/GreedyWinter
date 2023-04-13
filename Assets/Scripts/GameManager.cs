@@ -8,6 +8,12 @@ public class GameManager : Singleton<GameManager>
 {
     private bool isGameActive = false;
     private Spawner spawner;
+    private Leaderboard leaderboard;
+
+    private void OnEnable()
+    {
+        leaderboard = FindObjectOfType<Leaderboard>();
+    }
 
     public void StartGame()
     {
@@ -26,11 +32,14 @@ public class GameManager : Singleton<GameManager>
 
     public void EndGame()
     {
-        FindObjectOfType<Score>().ResetScore();
+        var score = FindObjectOfType<Score>();
+        StartCoroutine(leaderboard.SubmitScoreRoutine(score.GetScore()));
+        score.ResetScore();
         var spawner = FindObjectOfType<Spawner>();
         spawner.DestroyObjects();
         spawner.SetSpawnCounter(0);
         CanvasManager.GetInstance().SwitchCanvas(CanvasType.GameOverScreen);
+        StartCoroutine(leaderboard.FetchTopHighscoresRoutine());
     }
 
     public void RestartGame()

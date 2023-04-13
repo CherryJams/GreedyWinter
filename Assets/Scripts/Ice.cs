@@ -1,12 +1,21 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Ice : MonoBehaviour, IClickable
+public class Ice : MonoBehaviour
 {
     private Spawner spawner;
     private Bar bar;
+    private Button button;
 
-    public void OnMouseDown()
+    private void OnEnable()
+    {
+        button = gameObject.GetComponent<Button>();
+        button.onClick.AddListener(ResetGame);
+    }
+
+    public void ResetGame()
     {
         if (GameManager.GetInstance().IsGameActive())
         {
