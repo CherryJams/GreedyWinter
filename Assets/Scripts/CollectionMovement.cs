@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 public class CollectionMovement : MonoBehaviour
 {
-    private GameObject target;
+    private RectTransform target;
     private RectTransform rectTransform;
     [SerializeField] private float timeToMove;
 
@@ -13,8 +13,8 @@ public class CollectionMovement : MonoBehaviour
 
     public void MoveToTarget()
     {   
-        target= GameObject.FindGameObjectWithTag("TreeTarget");
-        LeanTween.move(rectTransform, new Vector2(6.67000008f,3.03999996f), timeToMove); 
+        target= GameObject.FindGameObjectWithTag("TreeTarget").GetComponent<RectTransform>();
+        LeanTween.move(gameObject, target.localPosition, timeToMove); 
         LeanTween.scale(gameObject, new Vector3(0, 0, 0), timeToMove).setOnComplete(DestroyThis);
     }
 

@@ -11,9 +11,11 @@ public class Tree : MonoBehaviour
     private Score score;
     private Spawner spawner;
     private Button button;
+    LayoutElement layoutElement;
 
     private void OnEnable()
     {
+        layoutElement = gameObject.GetComponent<LayoutElement>();
         button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(AdvanceGame);
         collectionMovement = FindObjectOfType<CollectionMovement>();
@@ -31,6 +33,7 @@ public class Tree : MonoBehaviour
             spawner.DestroyIce();
             collectionMovement.MoveToTarget();
             spawner.Spawn();
+            layoutElement.ignoreLayout = true;
             bar.AnimateBar();
             score.AddScore(scorePoints);
         }

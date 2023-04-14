@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fb43f6e14e49b8897ab845dbad9bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePoints: 0
+  scorePoints: 1
 --- !u!114 &2578776656881581548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283367d1903d4d78ac9ad5bbb03321a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToMove: 2
+  timeToMove: 1
 --- !u!114 &-7861893125932906285
 MonoBehaviour:
   m_ObjectHideFlags: 0

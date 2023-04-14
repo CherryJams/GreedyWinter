@@ -24,43 +24,43 @@ public class Spawner : MonoBehaviour
         Spawn();
         spawnCounter = 0;
         GameManager.GetInstance().SetGameActive(true);
-        
     }
 
     public void Spawn()
     {
         treePosIndex = Random.Range(0, spawnPoints.Count);
-        treeObject = Instantiate(treePrefab, spawnPoints[treePosIndex].anchoredPosition, Quaternion.identity);
-        treeObject.GetComponent<RectTransform>().SetParent(layoutGroup);
         for (int i = 0; i < spawnPoints.Count; i++)
         {
-            if (i != treePosIndex)
+            if (i == treePosIndex)
             {
-                iceObject = Instantiate(icePrefab, spawnPoints[i].anchoredPosition, Quaternion.identity);
-                iceObject.GetComponent<RectTransform>().SetParent(layoutGroup); 
+                treeObject = Instantiate(treePrefab, layoutGroup.anchoredPosition, Quaternion.identity);
+                treeObject.GetComponent<RectTransform>().SetParent(layoutGroup);
+            }
+            else
+            {
+                iceObject = Instantiate(icePrefab, layoutGroup.anchoredPosition, Quaternion.identity);
+                iceObject.GetComponent<RectTransform>().SetParent(layoutGroup);
             }
         }
-
-        
     }
 
     public void DestroyIce()
     {
-            foreach(RectTransform child in layoutGroup)
+        foreach (RectTransform child in layoutGroup)
+        {
+            if (child.CompareTag("Ice"))
             {
-              if (child.CompareTag("Ice"))
-                {
-                    Destroy(child.gameObject);
-                }
+                Destroy(child.gameObject);
             }
+        }
     }
-    
+
     public void DestroyObjects()
     {
-            foreach(RectTransform child in layoutGroup)
-            {
-                    Destroy(child.gameObject);
-            }
+        foreach (RectTransform child in layoutGroup)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void SetSpawnCounter(int spawnCounter)
