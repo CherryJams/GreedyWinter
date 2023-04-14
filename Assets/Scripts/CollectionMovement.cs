@@ -14,7 +14,7 @@ public class CollectionMovement : MonoBehaviour
     public void MoveToTarget()
     {   
         target= GameObject.FindGameObjectWithTag("TreeTarget").GetComponent<RectTransform>();
-        LeanTween.move(gameObject, target.localPosition, timeToMove); 
+        LeanTween.moveLocal(gameObject, target.localPosition, timeToMove); 
         LeanTween.scale(gameObject, new Vector3(0, 0, 0), timeToMove).setOnComplete(DestroyThis);
     }
 
