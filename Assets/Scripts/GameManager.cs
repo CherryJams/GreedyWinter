@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         leaderboard = FindObjectOfType<Leaderboard>();
+        
     }
 
     public void StartGame()

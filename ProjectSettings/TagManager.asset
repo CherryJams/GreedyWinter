@@ -7,6 +7,9 @@ TagManager:
   - Ice
   - Tree
   - TreeTarget
+  - ClickSound
+  - UIAudio
+  - StatusSound
   layers:
   - Default
   - TransparentFX

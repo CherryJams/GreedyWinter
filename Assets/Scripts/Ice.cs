@@ -20,6 +20,7 @@ public class Ice : MonoBehaviour
         if (GameManager.GetInstance().IsGameActive())
         {
             Debug.Log("Ice clicked");
+            AudioManager.GetInstance().PlayAudioSource("StatusSound", "GameOver");
             FindObjectOfType<Bar>().ResetBar();
             GameManager.GetInstance().EndGame();
         }

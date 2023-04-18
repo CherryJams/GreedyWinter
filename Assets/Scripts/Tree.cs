@@ -32,6 +32,7 @@ public class Tree : MonoBehaviour
             GameManager.GetInstance().SetGameActive(true);
             spawner.DestroyIce();
             collectionMovement.MoveToTarget();
+            AudioManager.GetInstance().PlayAudioSource("UIAudio", "Hover");
             spawner.Spawn();
             layoutElement.ignoreLayout = true;
             bar.AnimateBar();
